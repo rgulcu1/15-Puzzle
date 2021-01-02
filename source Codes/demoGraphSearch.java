@@ -10,18 +10,20 @@ public class demoGraphSearch {
         Integer solutionCounter = 0;
 
         final Integer[][] inialState = new Integer[Constants.ROW_SIZE][Constants.COLUMN_SIZE];
-        GraphSearch.copyState(Constants.FINAL_STATE,inialState);
+        Utility.copyState(Constants.FINAL_STATE,inialState);
 
         for (int i = 0; i <10 ; i++) {
-            GraphSearch.copyState(Constants.FINAL_STATE,inialState);
+            Utility.copyState(Constants.FINAL_STATE,inialState);
             StateMixer.mixState(inialState,Constants.DEPTH);
 
             System.out.println("\n------------------------------- " +(i+1)+"th RUN--------------------------\n");
 
-            //solution = GraphSearch.graphSearch(inialState,Constants.Strategy.UCS , Constants.Strategy.HEURISTIC_1);
-            //solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_1);
-             //solution = GraphSearch.graphSearch(Constants.INITIAL_STATE,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_2);
-            solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_3);
+
+            solution = GraphSearch.graphSearch(inialState,Constants.Strategy.UCS , Constants.Strategy.HEURISTIC_1);
+           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.ILS, Constants.Strategy.HEURISTIC_1);
+           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_1);
+            //solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_2);
+           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_3);
 
             if(Objects.isNull(solution)) continue;
             totalExpand+=solution[0];

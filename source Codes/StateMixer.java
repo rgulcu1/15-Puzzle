@@ -11,20 +11,20 @@ public class StateMixer {
 
         for (int i = 0; i < depth; i++) {
             final Integer[][] tempState = new Integer[Constants.ROW_SIZE][Constants.COLUMN_SIZE];
-            GraphSearch.copyState(goalState, tempState);
+            Utility.copyState(goalState, tempState);
             final Integer[][] copytempState = new Integer[Constants.ROW_SIZE][Constants.COLUMN_SIZE];
-            GraphSearch.copyState(tempState, copytempState);
+            Utility.copyState(tempState, copytempState);
             states.add(copytempState);
 
-            final Integer[] emptyTileCoorddinate = GraphSearch.detectTileCoordinate(goalState,0);
-            final ArrayList<String> allowableMoves = GraphSearch.getAllowableMoves(emptyTileCoorddinate);
+            final Integer[] emptyTileCoorddinate = Utility.detectTileCoordinate(goalState,0);
+            final ArrayList<String> allowableMoves = Utility.getAllowableMoves(emptyTileCoorddinate);
 
             while (true) {
                 String randomMovement = allowableMoves.get(rand.nextInt(allowableMoves.size()));
-                GraphSearch.moveState(tempState, randomMovement);
+                Utility.moveState(tempState, randomMovement);
                 Boolean isCircle = false;
                 for (int j = 0; j < states.size(); j++) {
-                    if (GraphSearch.stateCompare(calculateStateText(tempState), calculateStateText(states.get(j)))) {
+                    if (Utility.stateCompare(calculateStateText(tempState), calculateStateText(states.get(j)))) {
                         isCircle = true;
                         break;
                     }
@@ -32,12 +32,12 @@ public class StateMixer {
 
                 if (isCircle) {
                     allowableMoves.remove(randomMovement);
-                    GraphSearch.copyState(goalState, tempState);
+                    Utility.copyState(goalState, tempState);
                     continue;
                 }
                 break;
             }
-            GraphSearch.copyState(tempState,goalState);
+            Utility.copyState(tempState,goalState);
         }
 
     }

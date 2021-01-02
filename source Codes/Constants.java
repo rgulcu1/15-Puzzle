@@ -20,7 +20,7 @@ public final class Constants {
 
     public static final Long TIME_LIMIT = Long.valueOf(300000);
 
-    public static final Integer DEPTH = 28;
+    public static final Integer DEPTH = 8;
 
 
     public class Strategy {
