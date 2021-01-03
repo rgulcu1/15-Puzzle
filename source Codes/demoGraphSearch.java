@@ -19,11 +19,11 @@ public class demoGraphSearch {
             System.out.println("\n------------------------------- " +(i+1)+"th RUN--------------------------\n");
 
 
-            solution = GraphSearch.graphSearch(inialState,Constants.Strategy.UCS , Constants.Strategy.HEURISTIC_1);
-           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.ILS, Constants.Strategy.HEURISTIC_1);
-           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_1);
-            //solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_2);
-           // solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_3);
+            //solution = GraphSearch.graphSearch(Constants.INITIAL_STATE_B,Constants.Strategy.UCS , Constants.Strategy.HEURISTIC_1);
+            //solution = GraphSearch.graphSearch(Constants.INITIAL_STATE_A,Constants.Strategy.ILS, Constants.Strategy.HEURISTIC_1);
+            //solution = GraphSearch.graphSearch(Constants.INITIAL_STATE_B,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_1);
+            solution = GraphSearch.graphSearch(Constants.INITIAL_STATE_C,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_2);
+            //solution = GraphSearch.graphSearch(inialState,Constants.Strategy.A_STAR , Constants.Strategy.HEURISTIC_3);
 
             if(Objects.isNull(solution)) continue;
             totalExpand+=solution[0];
@@ -32,6 +32,7 @@ public class demoGraphSearch {
         }
 
         System.out.println("\n ********************************AVERAGE RESULTS*****************************\n");
+        System.out.println("Number of solved problems: "+solutionCounter);
         System.out.println("Average Number of Expanded nodes for depth " + Constants.DEPTH +": " + totalExpand/solutionCounter);
         System.out.println("Average Number of Stored nodes in memory for depth " + Constants.DEPTH +": " + totalStoredNodes/solutionCounter);
     }

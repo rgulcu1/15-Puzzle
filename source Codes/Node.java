@@ -47,20 +47,12 @@ public class Node  implements  Comparable<Node>{
         return estimatedCost;
     }
 
-    public void setRealCost(Integer realCost) {
-        this.realCost = realCost;
-    }
-
     public void setEstimatedCost(Integer estimatedCost) {
         this.estimatedCost = estimatedCost;
     }
 
     public String getMove() {
         return move;
-    }
-
-    public void setMove(String move) {
-        this.move = move;
     }
 
     public String getStateText() {

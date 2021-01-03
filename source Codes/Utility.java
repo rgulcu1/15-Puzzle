@@ -122,7 +122,7 @@ public class Utility {
         state[i][j] = temp;
     }
 
-    private static void printSate(Integer[][] state) {
+    public static void printSate(Integer[][] state) {
 
         for (int i = 0; i < Constants.ROW_SIZE; i++) {
             for (int j = 0; j < Constants.COLUMN_SIZE; j++) {

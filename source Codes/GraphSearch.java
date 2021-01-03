@@ -71,6 +71,14 @@ public class GraphSearch {
             exploredSet.add(currentNode);
             expandNode(currentNode, frontierList, exploredSet, lengthLimit, strategy, heuristicFuntion);
             expandCounter++;
+
+            if (expandCounter%5000 == 0){
+                System.out.println("Expanded Node = " + expandCounter);
+                System.out.println("Current State: ");
+                Utility.printSate(currentNode.getState());
+                System.out.println("Path cost of current Node: " +currentNode.getRealCost());
+                System.out.println("Estimated cost to final State : " +currentNode.getEstimatedCost() +"\n");
+            }
         }
     }
 
@@ -97,7 +105,6 @@ public class GraphSearch {
         final Integer[] emptyTileCoorddinate = Utility.detectTileCoordinate(currentState, 0);
 
         final ArrayList<String> allowableMoves = Utility.getAllowableMoves(emptyTileCoorddinate);
-        allowableMoves.remove(getReverseDirection(currentNode.getMove()));
 
 
         for (int i = 0; i < allowableMoves.size(); i++) {
@@ -129,7 +136,7 @@ public class GraphSearch {
 
             final Node currentNode = exploredSet.get(i);
 
-            if ((Objects.isNull(currentNode.getParentNode()) || Utility.stateCompare(currentNode.getParentNode().getStateText(), childNode.getParentNode().getStateText()))
+            if ((Objects.isNull(currentNode.getParentNode()) || childNode.getRealCost() >= currentNode.getRealCost())
                     && Utility.stateCompare(currentNode.getStateText(), childNode.getStateText()))
                 return true;
         }
@@ -140,7 +147,8 @@ public class GraphSearch {
 
         final Boolean[] flag = {false};
         frontierList.forEach(node -> {
-            if (Utility.stateCompare(node.getParentNode().getStateText(), childNode.getParentNode().getStateText()) && Utility.stateCompare(node.getStateText(), childNode.getStateText())) {
+            if ((Utility.stateCompare(node.getParentNode().getStateText(), childNode.getParentNode().getStateText()) || childNode.getRealCost() >= node.getRealCost())
+                    && Utility.stateCompare(node.getStateText(), childNode.getStateText())) {
                 flag[0] = true;
             }
         });
@@ -288,31 +296,6 @@ public class GraphSearch {
             }
         }
         return estimatedDistance;
-    }
-
-    private static String getReverseDirection(String direction) {
-
-        switch (direction) {
-
-            case Constants.Moves.UP:
-                return Constants.Moves.DOWN;
-            case Constants.Moves.DOWN:
-                return Constants.Moves.UP;
-            case Constants.Moves.LEFT:
-                return Constants.Moves.RIGHT;
-            case Constants.Moves.RIGHT:
-                return Constants.Moves.LEFT;
-            case Constants.Moves.UP_LEFT:
-                return Constants.Moves.DOWN_RIGHT;
-            case Constants.Moves.UP_RIGHT:
-                return Constants.Moves.DOWN_LEFT;
-            case Constants.Moves.DOWN_LEFT:
-                return Constants.Moves.UP_RIGHT;
-            case Constants.Moves.DOWN_RIGHT:
-                return Constants.Moves.UP_LEFT;
-            default:
-                return null;
-        }
     }
 
     private static Boolean checkTime(Long startTime) {

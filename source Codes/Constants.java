@@ -5,10 +5,21 @@ public final class Constants {
             {11, 0, 15, 6},
             {10, 9, 8, 7}};
 
-    public static final Integer[][] INITIAL_STATE = {{1,3,5,4},
+    public static final Integer[][] INITIAL_STATE_B = {{1,3,5,4},
             {2, 13, 14, 15},
             {11, 12, 9, 6},
             {0, 10, 8, 7}};
+
+    public static final Integer[][] INITIAL_STATE_C = {{1,13,3,4},
+            {12, 11, 2, 5},
+            {9, 8, 15, 7},
+            {10, 6, 14, 0}};
+
+    public static final Integer[][] INITIAL_STATE_A = {{0,1,3,4},
+            {12, 13, 2, 5},
+            {11, 14, 15, 6},
+            {10, 9, 8, 7}};
+
 
 
 
@@ -18,9 +29,9 @@ public final class Constants {
 
     public static final Integer ROW_SIZE = FINAL_STATE.length;
 
-    public static final Long TIME_LIMIT = Long.valueOf(300000);
+    public static final Long TIME_LIMIT = Long.valueOf(2400000);
 
-    public static final Integer DEPTH = 8;
+    public static final Integer DEPTH = 2;
 
 
     public class Strategy {
